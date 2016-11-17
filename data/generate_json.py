@@ -15,8 +15,8 @@ def gen_json(images_dir='./pd_output',annotations_dir='./pd_output',outfile = 'p
     "jacket",
     "skirt"],
 
-    'imageURLS':[],
-    'annotationURLS':[]}
+    'imageURLs':[],
+    'annotationURLs':[]}
 
     for f in images:
         annotation_file = os.path.join(annotations_dir,os.path.basename(f))
