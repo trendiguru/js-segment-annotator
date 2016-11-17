@@ -2,17 +2,13 @@ __author__ = 'jeremy'
 import os
 import logging
 import json
+import cv2
+
+from trendi import constants
 
 logging.basicConfig(level=logging.DEBUG)
 
-fashionista_categories = ['background','tights','shorts','blazer','t-shirt','bag','shoes','coat','skirt','purse',
-                                    'boots','blouse','jacket','bra','dress','pants','sweater','shirt','jeans','leggings',
-                                    'scarf','hat','top','cardigan','accessories','vest','sunglasses','belt','socks','glasses',
-                                    'intimate','stockings','necklace','cape','jumper','sweatshirt','suit','bracelet','heels','wedges',
-                                    'ring','flats','tie','romper','sandals','earrings','gloves','sneakers','clogs','watch',
-                                    'pumps','wallet','bodysuit','loafers','hair','skin','face']
-
-def gen_json(images_dir='data/pd_output',annotations_dir='data/pd_output',outfile = 'data/pd_output.json',labels=fashionista_categories):
+def gen_json(images_dir='data/pd_output',annotations_dir='data/pd_output',outfile = 'data/pd_output.json',labels=constants.fashionista_categories):
     images = [os.path.join(images_dir,f) for f in os.listdir(images_dir) if '.jpg' in f]
     the_dict = {'labels': labels, 'imageURLs':[], 'annotationURLs':[]}
 
@@ -26,6 +22,29 @@ def gen_json(images_dir='data/pd_output',annotations_dir='data/pd_output',outfil
         the_dict['annotationURLs'].append(annotation_file)
     with open(outfile,'w') as fp:
         json.dump(the_dict,fp,indent=4)
+
+
+def convert_pdoutput_to_webtool(dir,suffix_to_convert='.bmp',suffix_to_convert_to='png'):
+    '''
+    images saved as .bmp seem to have a single grayscale channel, and an alpha.
+using 'convert' to convert those to .png doesn't help, same story. the web tool example images have the red channel
+ as index, so this func converts to that format. actually i will try r=g=b=index, hopefully thats ok too - since that
+ will be compatible with rest of our stuff
+    '''
+    files_to_convert=[os.path.join(dir,f) for f in os.listdir(dir) if suffix_to_convert in f]
+    for f in files_to_convert:
+        img_arr = cv2.imread(f)
+        print('shape '+str(img_arr.shape))
+        if len(img_arr.shape) == 1:
+            h,w = img_arr.shape[0:2]
+            out_arr = np.zeros([h,w,3])
+            out_arr[:,:,0] = img_arr
+            out_arr[:,:,1] = img_arr
+            out_arr[:,:,2] = img_arr
+            newname = os.path.join(dir,f.replace(suffix_to_convert,suffix_to_convert_to))
+                cv2.imwrite(newname,out_arr)
+        else:
+            print('did not get single-chan image')
 
 if __name__ == "__main__":
     gen_json()
