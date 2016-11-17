@@ -25,7 +25,7 @@ def gen_json(images_dir='data/pd_output',annotations_dir='data/pd_output',outfil
         the_dict['imageURLs'].append(f)
         the_dict['annotationURLs'].append(annotation_file)
     with open(outfile,'w') as fp:
-        json.dump(the_dict,fp)
+        json.dump(the_dict,fp,indent=4)
 
 if __name__ == "__main__":
     gen_json()
