@@ -25,7 +25,7 @@ def gen_json(images_dir='./pd_output',annotations_dir='./pd_output',outfile = 'p
             logging.info('could not find '+str(annotation_file))
             continue
         the_dict['imageURLs'].append(f)
-        the_dict['annotationURLs'].append(f)
+        the_dict['annotationURLs'].append(annotation_file)
     with open(outfile,'w') as fp:
         json.dump(the_dict,fp)
 
