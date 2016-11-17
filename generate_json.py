@@ -36,7 +36,7 @@ using 'convert' to convert those to .png doesn't help, same story. the web tool 
         img_arr = cv2.imread(f)
         print('shape '+str(img_arr.shape))
         h,w = img_arr.shape[0:2]
-        out_arr = np.zeros([h,w,3])
+        out_arr = np.zeros((h,w,3))
         out_arr[:,:,0] = img_arr  #it would seem this can be replaced by out_arr[:,:,:]=img_arr, maybe :: is used here
         out_arr[:,:,1] = img_arr
         out_arr[:,:,2] = img_arr
