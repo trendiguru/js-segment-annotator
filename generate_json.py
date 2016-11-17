@@ -39,9 +39,9 @@ using 'convert' to convert those to .png doesn't help, same story. the web tool 
         print('shape '+str(img_arr.shape)+ ' uniques:'+str(np.unique(img_arr)))
         h,w = img_arr.shape[0:2]
         out_arr = np.zeros((h,w,3))
-        out_arr[:,:,0] = img_arr[:,:,0]  #it would seem this can be replaced by out_arr[:,:,:]=img_arr, maybe :: is used here
-        out_arr[:,:,1] = img_arr[:,:,0]
-        out_arr[:,:,2] = img_arr[:,:,0]
+        out_arr[:,:,0] = 0  #B it would seem this can be replaced by out_arr[:,:,:]=img_arr, maybe :: is used here
+        out_arr[:,:,1] = 0  #G
+        out_arr[:,:,2] = img_arr[:,:,0]  #R
         newname = os.path.join(dir,os.path.basename(f).replace(suffix_to_convert,suffix_to_convert_to))
         print('outname '+str(newname))
         cv2.imwrite(newname,out_arr)
