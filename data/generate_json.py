@@ -6,7 +6,7 @@ import json
 logging.basicConfig(level=logging.DEBUG)
 
 def gen_json(images_dir='./pd_output',annotations_dir='./pd_output',outfile = 'pd_output.json'):
-    images = [os.path.join(images_dir,f) for f in os.listdir(images_dir)]
+    images = [os.path.join(images_dir,f) for f in os.listdir(images_dir) if '.jpg' in f]
     the_dict = {'labels':    ["background",
     "skin",
     "hair",
@@ -19,7 +19,8 @@ def gen_json(images_dir='./pd_output',annotations_dir='./pd_output',outfile = 'p
     'annotationURLs':[]}
 
     for f in images:
-        annotation_file = os.path.join(annotations_dir,os.path.basename(f))
+        annotation_file = os.path.basename(f).replace('.jpg','bmp')
+        annotation_file = os.path.join(annotations_dir,annotation_file)
         if not os.path.isfile(annotation_file):
             logging.info('could not find '+str(annotation_file))
         the_dict['imageURLs'].append(f)
