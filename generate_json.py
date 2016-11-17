@@ -24,7 +24,7 @@ def gen_json(images_dir='data/pd_output',annotations_dir='data/pd_output',outfil
         json.dump(the_dict,fp,indent=4)
 
 
-def convert_pdoutput_to_webtool(dir,suffix_to_convert='.bmp',suffix_to_convert_to='png'):
+def convert_pdoutput_to_webtool(dir,suffix_to_convert='.bmp',suffix_to_convert_to='.png'):
     '''
     images saved as .bmp seem to have a single grayscale channel, and an alpha.
 using 'convert' to convert those to .png doesn't help, same story. the web tool example images have the red channel
@@ -35,16 +35,13 @@ using 'convert' to convert those to .png doesn't help, same story. the web tool 
     for f in files_to_convert:
         img_arr = cv2.imread(f)
         print('shape '+str(img_arr.shape))
-        if len(img_arr.shape) == 1:
-            h,w = img_arr.shape[0:2]
-            out_arr = np.zeros([h,w,3])
-            out_arr[:,:,0] = img_arr
-            out_arr[:,:,1] = img_arr
-            out_arr[:,:,2] = img_arr
-            newname = os.path.join(dir,f.replace(suffix_to_convert,suffix_to_convert_to))
-            cv2.imwrite(newname,out_arr)
-        else:
-            print('did not get single-chan image')
+        h,w = img_arr.shape[0:2]
+        out_arr = np.zeros([h,w,3])
+        out_arr[:,:,0] = img_arr  #it would seem this can be replaced by out_arr[:,:,:]=img_arr, maybe :: is used here
+        out_arr[:,:,1] = img_arr
+        out_arr[:,:,2] = img_arr
+        newname = os.path.join(dir,f.replace(suffix_to_convert,suffix_to_convert_to))
+        cv2.imwrite(newname,out_arr)
 
 if __name__ == "__main__":
     gen_json()
