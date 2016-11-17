@@ -5,18 +5,16 @@ import json
 
 logging.basicConfig(level=logging.DEBUG)
 
-def gen_json(images_dir='data/pd_output',annotations_dir='data/pd_output',outfile = 'data/pd_output.json'):
-    images = [os.path.join(images_dir,f) for f in os.listdir(images_dir) if '.jpg' in f]
-    the_dict = {'labels':    ["background",
-    "skin",
-    "hair",
-    "dress",
-    "glasses",
-    "jacket",
-    "skirt"],
+fahionista_categorie = ['background','tights','shorts','blazer','t-shirt','bag','shoes','coat','skirt','purse',
+                                    'boots','blouse','jacket','bra','dress','pants','sweater','shirt','jeans','leggings',
+                                    'scarf','hat','top','cardigan','accessories','vest','sunglasses','belt','socks','glasses',
+                                    'intimate','stockings','necklace','cape','jumper','sweatshirt','suit','bracelet','heels','wedges',
+                                    'ring','flats','tie','romper','sandals','earrings','gloves','sneakers','clogs','watch',
+                                    'pumps','wallet','bodysuit','loafers','hair','skin','face']
 
-    'imageURLs':[],
-    'annotationURLs':[]}
+def gen_json(images_dir='data/pd_output',annotations_dir='data/pd_output',outfile = 'data/pd_output.json',labels=fashionista_categories):
+    images = [os.path.join(images_dir,f) for f in os.listdir(images_dir) if '.jpg' in f]
+    the_dict = {'labels': labels, 'imageURLs':[], 'annotationURLs':[]}
 
     for f in images:
         annotation_file = os.path.basename(f).replace('.jpg','.bmp')
