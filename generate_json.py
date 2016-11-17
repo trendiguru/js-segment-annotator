@@ -36,17 +36,14 @@ using 'convert' to convert those to .png doesn't help, same story. the web tool 
     files_to_convert=[os.path.join(dir,f) for f in os.listdir(dir) if suffix_to_convert in f]
     for f in files_to_convert:
         img_arr = cv2.imread(f)
-        print('shape '+str(img_arr.shape))
+        print('shape '+str(img_arr.shape)+ ' uniques:'+str(np.unique(img_arr)))
         h,w = img_arr.shape[0:2]
-        print('uniques:'+str(np.unique(img_arr)))
-        print('uniques0:'+str(np.unique(img_arr[:,:,0])))
-        print('uniques1:'+str(np.unique(img_arr[:,:,1])))
-        print('uniques2:'+str(np.unique(img_arr[:,:,2])))
         out_arr = np.zeros((h,w,3))
         out_arr[:,:,0] = img_arr[:,:,0]  #it would seem this can be replaced by out_arr[:,:,:]=img_arr, maybe :: is used here
         out_arr[:,:,1] = img_arr[:,:,0]
         out_arr[:,:,2] = img_arr[:,:,0]
         newname = os.path.join(dir,f.replace(suffix_to_convert,suffix_to_convert_to))
+        print('outname '+str(newname))
         cv2.imwrite(newname,out_arr)
 
 if __name__ == "__main__":
