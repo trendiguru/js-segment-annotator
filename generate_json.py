@@ -42,7 +42,7 @@ using 'convert' to convert those to .png doesn't help, same story. the web tool 
             out_arr[:,:,1] = img_arr
             out_arr[:,:,2] = img_arr
             newname = os.path.join(dir,f.replace(suffix_to_convert,suffix_to_convert_to))
-                cv2.imwrite(newname,out_arr)
+            cv2.imwrite(newname,out_arr)
         else:
             print('did not get single-chan image')
 
