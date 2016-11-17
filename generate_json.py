@@ -38,10 +38,14 @@ using 'convert' to convert those to .png doesn't help, same story. the web tool 
         img_arr = cv2.imread(f)
         print('shape '+str(img_arr.shape))
         h,w = img_arr.shape[0:2]
+        print('uniques:'+str(np.unique(img_arr)))
+        print('uniques0:'+str(np.unique(img_arr[:,:,0])))
+        print('uniques1:'+str(np.unique(img_arr[:,:,1])))
+        print('uniques2:'+str(np.unique(img_arr[:,:,2])))
         out_arr = np.zeros((h,w,3))
-        out_arr[:,:,0] = img_arr  #it would seem this can be replaced by out_arr[:,:,:]=img_arr, maybe :: is used here
-        out_arr[:,:,1] = img_arr
-        out_arr[:,:,2] = img_arr
+        out_arr[:,:,0] = img_arr[:,:,0]  #it would seem this can be replaced by out_arr[:,:,:]=img_arr, maybe :: is used here
+        out_arr[:,:,1] = img_arr[:,:,0]
+        out_arr[:,:,2] = img_arr[:,:,0]
         newname = os.path.join(dir,f.replace(suffix_to_convert,suffix_to_convert_to))
         cv2.imwrite(newname,out_arr)
 
