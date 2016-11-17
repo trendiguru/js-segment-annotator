@@ -19,7 +19,7 @@ def gen_json(images_dir='./pd_output',annotations_dir='./pd_output',outfile = 'p
     'annotationURLs':[]}
 
     for f in images:
-        annotation_file = os.path.basename(f).replace('.jpg','bmp')
+        annotation_file = os.path.basename(f).replace('.jpg','.bmp')
         annotation_file = os.path.join(annotations_dir,annotation_file)
         if not os.path.isfile(annotation_file):
             logging.info('could not find '+str(annotation_file))
