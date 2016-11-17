@@ -1,9 +1,11 @@
 __author__ = 'jeremy'
 import os
 import logging
+import json
+
 logging.basicConfig(level=logging.DEBUG)
 
-def gen_json(images_dir='/pd_output',annotations_dir='/pd_output',outfile = 'pd_output.json'):
+def gen_json(images_dir='./pd_output',annotations_dir='./pd_output',outfile = 'pd_output.json'):
     images = [os.path.join(images_dir,f) for f in os.listdir(images_dir)]
     the_dict = {'labels':    ["background",
     "skin",
@@ -22,8 +24,11 @@ def gen_json(images_dir='/pd_output',annotations_dir='/pd_output',outfile = 'pd_
             logging.info('could not find '+str(annotation_file))
         the_dict['imageURLs'].append(f)
         the_dict['annotationURLs'].append(f)
+    with open(outfile,'w') as fp:
+        json.dump(the_dict,fp)
 
-
+if __name__ == "__main__":
+    gen_json()
 
 
 '''
