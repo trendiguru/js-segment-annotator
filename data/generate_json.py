@@ -5,7 +5,7 @@ import json
 
 logging.basicConfig(level=logging.DEBUG)
 
-def gen_json(images_dir='./pd_output',annotations_dir='./pd_output',outfile = 'pd_output.json'):
+def gen_json(images_dir='data/pd_output',annotations_dir='data/pd_output',outfile = 'pd_output.json'):
     images = [os.path.join(images_dir,f) for f in os.listdir(images_dir) if '.jpg' in f]
     the_dict = {'labels':    ["background",
     "skin",
