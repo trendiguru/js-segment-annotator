@@ -5,7 +5,7 @@ import json
 
 logging.basicConfig(level=logging.DEBUG)
 
-fahionista_categories = ['background','tights','shorts','blazer','t-shirt','bag','shoes','coat','skirt','purse',
+fashionista_categories = ['background','tights','shorts','blazer','t-shirt','bag','shoes','coat','skirt','purse',
                                     'boots','blouse','jacket','bra','dress','pants','sweater','shirt','jeans','leggings',
                                     'scarf','hat','top','cardigan','accessories','vest','sunglasses','belt','socks','glasses',
                                     'intimate','stockings','necklace','cape','jumper','sweatshirt','suit','bracelet','heels','wedges',
