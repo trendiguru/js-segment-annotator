@@ -3,6 +3,8 @@ import os
 import logging
 import json
 import cv2
+import numpy as np
+
 
 from trendi import constants
 
