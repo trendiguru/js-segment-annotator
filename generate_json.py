@@ -10,7 +10,7 @@ from trendi import constants
 
 logging.basicConfig(level=logging.DEBUG)
 
-def gen_json(images_dir='data/pd_output',annotations_dir='data/pd_output',outfile = 'data/pd_output.json',labels=constants.fashionista_categories_augmented_zero_based,mask_suffix='.png'):
+def gen_json(images_dir='data/pd_output',annotations_dir='data/pd_output',outfile = 'data/pd_output.json',labels=constants.pixevel_classifier_categories_v2,mask_suffix='.png'):
     images = [os.path.join(images_dir,f) for f in os.listdir(images_dir) if '.jpg' in f]
     the_dict = {'labels': labels, 'imageURLs':[], 'annotationURLs':[]}
 
@@ -29,11 +29,12 @@ def gen_json(images_dir='data/pd_output',annotations_dir='data/pd_output',outfil
 def convert_pdoutput_to_webtool(dir,suffix_to_convert='.bmp',suffix_to_convert_to='.png'):
     '''
     images saved as .bmp seem to have a single grayscale channel, and an alpha.
-using 'convert' to convert those to .png doesn't help, same story. the web tool example images have the red channel
- as index, so this func converts to that format. actually i will try r=g=b=index, hopefully thats ok too - since that
- will be compatible with rest of our stuff
+    using 'convert' to convert those to .png doesn't help, same story. the web tool example images have the red channel
+    as index, so this func converts to that format. actually i will try r=g=b=index, hopefully thats ok too - since that
+    will be compatible with rest of our stuff...that didnt work , the tool really wants R=category, B=G=0
     '''
     files_to_convert=[os.path.join(dir,f) for f in os.listdir(dir) if suffix_to_convert in f]
+    print(str(len(files_to_convert))+' files in '+dir)
     for f in files_to_convert:
         img_arr = cv2.imread(f)
         print('shape '+str(img_arr.shape)+ ' uniques:'+str(np.unique(img_arr)))
