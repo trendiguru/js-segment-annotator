@@ -10,7 +10,7 @@ from trendi import constants
 
 logging.basicConfig(level=logging.DEBUG)
 
-def gen_json(images_dir='data/pd_output',annotations_dir='data/pd_output',outfile = 'data/pd_output.json',labels=constants.pixevel_classifier_categories_v2,mask_suffix='.png'):
+def gen_json(images_dir='data/pd_output',annotations_dir='data/pd_output',outfile = 'data/pd_output.json',labels=constants.pixlevel_classifier_categories_v2,mask_suffix='.png'):
     images = [os.path.join(images_dir,f) for f in os.listdir(images_dir) if '.jpg' in f]
     the_dict = {'labels': labels, 'imageURLs':[], 'annotationURLs':[]}
 
