@@ -219,10 +219,17 @@ function(Layer, Annotator, util) {
       console.log(filename);
       //#post to 159.8.222.2    goes here
       var API = "http://159.8.222.2:8083/pixlevel_annotator";
-      $.post(API, {
-            filename: filename,
-            img_data: img_data,
-            });
+
+      var xhr = new XMLHttpRequest();
+//      xhr.open('GET', 'send-ajax-data.php');
+ //     xhr.send(null);
+      xhr.open('POST', 'send-ajax-data.php');
+      xhr.send({filename:filename,img_data:img_data});
+
+//      $.post(API, {
+ //           filename: filename,
+ //           img_data: img_data,
+  //          }      );
 
 //       $.getJSON(API, {
 //            filename: filename,
