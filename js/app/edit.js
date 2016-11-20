@@ -217,8 +217,8 @@ function(Layer, Annotator, util) {
 //      downloadURI(annotator.export(), filename);
       img_data = annotator.export()
       console.log(filename);
-      //#post to 159.8.222.2    goes here
-      var API = "http://159.8.222.2:8083/pixlevel_annotator";
+      //#post to 159.8.222.2 -brainb  , 169....210 is braind
+      var API = "http://169.45.147.210:8083/pixlevel_annotator";
 
       var xhr = new XMLHttpRequest();
 //      xhr.open('GET', 'send-ajax-data.php');
