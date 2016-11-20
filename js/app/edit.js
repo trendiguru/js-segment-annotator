@@ -218,7 +218,7 @@ function(Layer, Annotator, util) {
       img_data = annotator.export()
       console.log(filename);
       //#post to 159.8.222.2    goes here
-      var API = "http://159.8.222.2:8080/pixlevel_annotator";
+      var API = "http://159.8.222.2:8083/pixlevel_annotator";
       $.post(API, {
             filename: filename,
             img_data: img_data,
