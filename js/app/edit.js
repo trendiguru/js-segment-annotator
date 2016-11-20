@@ -213,8 +213,9 @@ function(Layer, Annotator, util) {
       var filename = (data.annotationURLs) ?
           data.annotationURLs[params.id].split(/[\\/]/).pop() :
           params.id + ".png";
+      console.log('saving image');
       downloadURI(annotator.export(), filename);
-      console.log(filename)
+      console.log(filename);
     });
     spacer1.className = "edit-sidebar-spacer";
     undoButton.className = "edit-sidebar-button";
