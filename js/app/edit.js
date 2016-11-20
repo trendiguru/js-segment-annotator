@@ -223,7 +223,7 @@ function(Layer, Annotator, util) {
       var xhr = new XMLHttpRequest();
 //      xhr.open('GET', 'send-ajax-data.php');
  //     xhr.send(null);
-      xhr.open('POST', 'send-ajax-data.php');
+      xhr.open('POST', API);
       xhr.send({filename:filename,img_data:img_data});
 
 //      $.post(API, {
