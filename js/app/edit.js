@@ -211,34 +211,19 @@ function(Layer, Annotator, util) {
     exportButton.className = "edit-sidebar-submit";
     exportButton.addEventListener("click", function () {
       var filename = (data.annotationURLs) ?
-          data.annotationURLs[params.id].split(/[\\/]/).pop() :
-          params.id + ".png";
+                       data.annotationURLs[params.id].split(/[\\/]/).pop() :
+      params.id + ".png";
       console.log('saving image');
-//      downloadURI(annotator.export(), filename);
-      img_data = annotator.export()
-      console.log(filename);
-      //#post to 159.8.222.2 -brainb  , 169....210 is braind
+//    downloadURI(annotator.export(), filename);
+  img_string = annotator.export()
+  console.log(filename);
+
       var API = "http://169.45.147.210:8083/pixlevel_annotator";
-
-      var xhr = new XMLHttpRequest();
-//      xhr.open('GET', 'send-ajax-data.php');
- //     xhr.send(null);
-      xhr.open('POST', API);
-      xhr.send({filename:filename,img_data:img_data});
-
-//      $.post(API, {
- //           filename: filename,
- //           img_data: img_data,
-  //          }      );
-
-//       $.getJSON(API, {
-//            filename: filename,
-//            img_data: img_data,
-//            }).done(function(data) {
-//              console.log("incomingdata"+data);
-//          });
-
-      });
+      fetch(API, {
+        method: "POST",
+        body: JSON.stringify({filename:filename,img_string:img_string})
+      }).then((result) => console.log(result))
+    });
     spacer1.className = "edit-sidebar-spacer";
     undoButton.className = "edit-sidebar-button";
     undoButton.appendChild(document.createTextNode("undo"));
