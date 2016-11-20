@@ -1,14 +1,14 @@
 __author__ = 'jeremy'
 import os
 import logging
+logging.basicConfig(level=logging.DEBUG)
 import json
 import cv2
 import numpy as np
 
 
 from trendi import constants
-
-logging.basicConfig(level=logging.DEBUG)
+from trendi.classifier_stuff.caffe_nns import conversion_utils
 
 def gen_json(images_dir='data/pd_output',annotations_dir='data/pd_output',
              outfile = 'data/pd_output.json',labels=constants.pixlevel_categories_v2,mask_suffix='.png'):
@@ -44,9 +44,13 @@ def convert_pdoutput_to_webtool(dir,suffix_to_convert='.bmp',suffix_to_convert_t
         out_arr[:,:,0] = 0  #B it would seem this can be replaced by out_arr[:,:,:]=img_arr, maybe :: is used here
         out_arr[:,:,1] = 0  #G
         out_arr[:,:,2] = img_arr[:,:,0]  #R
+
         newname = os.path.join(dir,os.path.basename(f).replace(suffix_to_convert,suffix_to_convert_to))
         print('outname '+str(newname))
         cv2.imwrite(newname,out_arr)
+
+        return out_arr
+
 
 if __name__ == "__main__":
     gen_json()
