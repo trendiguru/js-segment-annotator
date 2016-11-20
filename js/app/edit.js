@@ -214,9 +214,24 @@ function(Layer, Annotator, util) {
           data.annotationURLs[params.id].split(/[\\/]/).pop() :
           params.id + ".png";
       console.log('saving image');
-      downloadURI(annotator.export(), filename);
+//      downloadURI(annotator.export(), filename);
+      img_data = annotator.export()
       console.log(filename);
-    });
+      //#post to 159.8.222.2    goes here
+      var API = "http://159.8.222.2:8080/pixlevel_annotator";
+      $.post(API, {
+            filename: filename,
+            img_data: img_data,
+            });
+
+//       $.getJSON(API, {
+//            filename: filename,
+//            img_data: img_data,
+//            }).done(function(data) {
+//              console.log("incomingdata"+data);
+//          });
+
+      });
     spacer1.className = "edit-sidebar-spacer";
     undoButton.className = "edit-sidebar-button";
     undoButton.appendChild(document.createTextNode("undo"));
