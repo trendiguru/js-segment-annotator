@@ -223,8 +223,9 @@ function(Layer, Annotator, util) {
   img_string = annotator.export()
   console.log(filename);
 
-//      var API = "http://169.45.147.210:8083/pixlevel_annotator"; //brianb
-      var API = "http://104.155.22.95:8081/pixlevel_annotator"; //extremeli
+//      var API = "http://169.45.147.210r:8083/pixlevel_annotator"; //brianb
+//      var API = "http://104.155.22.95:8081/pixlevel_annotator"; //extremeli
+      var API = "http://169.45.147.210:8083/pixlevel_annotator"; //braind
 
       fetch(API, {
         method: "POST",
