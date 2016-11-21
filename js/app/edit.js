@@ -10,8 +10,12 @@ function(Layer, Annotator, util) {
         navigation = createNavigation(params, data),
         idBlock = document.createElement("div");
     idBlock.className = "edit-top-menu-block";
+    var filename = (data.annotationURLs) ?
+        data.annotationURLs[params.id].split(/[\\/]/).pop() :
+        params.id + ".png";
     idBlock.appendChild(
-        document.createTextNode(" ID = " + params.id));
+        document.createTextNode(" ID = " + params.id+ " name = "+filename));
+
     navigationMenu.appendChild(navigation);
     navigationMenu.appendChild(idBlock);
     return navigationMenu;
