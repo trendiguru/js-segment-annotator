@@ -15,6 +15,7 @@ function(Layer, Annotator, util) {
     navigationMenu.appendChild(navigation);
     navigationMenu.appendChild(idBlock);
     return navigationMenu;
+
   }
 
   // Create the page navigation.
