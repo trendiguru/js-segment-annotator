@@ -5,10 +5,10 @@ logging.basicConfig(level=logging.DEBUG)
 import json
 import cv2
 import numpy as np
+import os
 
-
+from trendi import kassper
 from trendi import constants
-from trendi.classifier_stuff.caffe_nns import conversion_utils
 
 def gen_json(images_dir='data/pd_output',annotations_dir='data/pd_output',
              outfile = 'data/pd_output.json',labels=constants.pixlevel_categories_v2,mask_suffix='.png'):
@@ -50,6 +50,27 @@ def convert_pdoutput_to_webtool(dir,suffix_to_convert='.bmp',suffix_to_convert_t
         cv2.imwrite(newname,out_arr)
 
         return out_arr
+
+def skin_dir(dir):
+    files = [os.path.join(dir,f)  for f in os.listdir(dir)]
+    for f in files:
+        img_arr=cv2.imread(f)
+        mask=kassper.skin_detection(img_arr)
+        mask=mask*255
+        uniques = np.unique(mask)
+        print uniques
+        cv2.imshow('mask',mask)
+        cv2.imshow('img',img_arr)
+        cv2.waitKey(0)
+
+def generate_empty_masks(dir,suffix='_pixv2_webtool.png'):
+    files = [os.path.join(dir,f)  for f in os.listdir(dir)]
+    for f in files:
+        img_arr=cv2.imread(f)
+        mask = np.zeros_like(img_arr)
+        maskname = os.path.basename(f).replace('.jpg',suffix)
+        maskname = os.path.join(dir,maskname)
+        cv2.imwrite(maskname,mask)
 
 
 if __name__ == "__main__":
