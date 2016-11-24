@@ -66,6 +66,7 @@ def skin_dir(dir):
 def generate_empty_masks(dir,suffix='_pixv2_webtool.png'):
     files = [os.path.join(dir,f)  for f in os.listdir(dir)]
     for f in files:
+        print('working on '+f)
         img_arr=cv2.imread(f)
         mask = np.zeros_like(img_arr)
         maskname = os.path.basename(f).replace('.jpg',suffix)
