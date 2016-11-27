@@ -57,7 +57,6 @@ function(Layer, Annotator, util) {
     container.appendChild(document.createTextNode(" "));
     container.appendChild(nextAnchor);
     container.classList.add("edit-top-menu-block");
-    console.log(nextAnchor);
     return container;
   }
 
