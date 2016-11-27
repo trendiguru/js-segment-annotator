@@ -45,7 +45,6 @@ function(Layer, Annotator, util) {
     if (id < data.imageURLs.length - 1) {
       nextAnchor = document.createElement("a");
       nextAnchor.appendChild(nextAnchorText);
-      console.log(nextAnchor);
       nextAnchor.href = util.makeQueryParams(params, {
         id: id + 1
       });
@@ -58,6 +57,7 @@ function(Layer, Annotator, util) {
     container.appendChild(document.createTextNode(" "));
     container.appendChild(nextAnchor);
     container.classList.add("edit-top-menu-block");
+    console.log(nextAnchor);
     return container;
   }
 
