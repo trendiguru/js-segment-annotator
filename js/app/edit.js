@@ -212,7 +212,7 @@ function(Layer, Annotator, util) {
         exportButton = document.createElement("input"),
         manualText;
     exportButton.type = "submit";
-    exportButton.value = "export";
+    exportButton.value = "save";
     exportButton.className = "edit-sidebar-submit";
     exportButton.addEventListener("click", function () {
       var filename = (data.annotationURLs) ?
@@ -222,7 +222,9 @@ function(Layer, Annotator, util) {
 //    downloadURI(annotator.export(), filename);
   img_string = annotator.export()
   console.log(filename);
-
+       var e = document.getElementById("nameSelect");
+       var strUser = e.options[e.selectedIndex].value;
+       console.log(strUser);
 //      var API = "http://169.45.147.210r:8083/pixlevel_annotator"; //brianb
 //      var API = "http://104.155.22.95:8081/pixlevel_annotator"; //extremeli
       var API = "http://169.45.147.210:8083/pixlevel_annotator"; //braind
