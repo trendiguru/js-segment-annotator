@@ -11,7 +11,7 @@ from trendi import kassper
 from trendi import constants
 
 def gen_json(images_dir='data/pd_output',annotations_dir='data/pd_output',
-             outfile = 'data/pd_output.json',labels=constants.pixlevel_categories_v2,mask_suffix='pixv2_webtool.png'):
+             outfile = 'data/pd_output.json',labels=constants.pixlevel_categories_v2,mask_suffix='_pixv2_webtool.png'):
     images = [os.path.join(images_dir,f) for f in os.listdir(images_dir) if '.jpg' in f]
     the_dict = {'labels': labels, 'imageURLs':[], 'annotationURLs':[]}
 
