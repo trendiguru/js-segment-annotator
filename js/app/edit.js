@@ -227,13 +227,14 @@ function(Layer, Annotator, util) {
        console.log("user:");
        console.log(strUser);
        console.log(e.options[e.selectedIndex]);
+
 //      var API = "http://169.45.147.210r:8083/pixlevel_annotator"; //brianb
 //      var API = "http://104.155.22.95:8081/pixlevel_annotator"; //extremeli
       var API = "http://169.45.147.210:8083/pixlevel_annotator"; //braind
 
       fetch(API, {
         method: "POST",
-        body: JSON.stringify({filename:filename,img_string:img_string})
+        body: JSON.stringify({strUser:strUser,filename:filename,img_string:img_string})
       }).then((result) => console.log(result))
     });
     spacer1.className = "edit-sidebar-spacer";
