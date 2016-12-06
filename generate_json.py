@@ -10,21 +10,33 @@ import os
 from trendi import kassper
 from trendi import constants
 
+
 def gen_json(images_dir='data/pd_output',annotations_dir='data/pd_output',
-             outfile = 'data/pd_output.json',labels=constants.pixlevel_categories_v4_for_web,mask_suffix='_pixv4_webtool.png'):
-    images = [os.path.join(images_dir,f) for f in os.listdir(images_dir) if '.jpg' in f]
+             outfile = 'data/pd_output.json',labels=constants.pixlevel_categories_v4_for_web,mask_suffix='_pixv4_webtool',
+             ignore_finished=True,finished_mask_suffix='_pixv4_webtool_finished_mask'):
+
+    images = [os.path.join(images_dir,f) for f in os.listdir(images_dir) if '.jpg' in f and not 'legend' in f]
     the_dict = {'labels': labels, 'imageURLs':[], 'annotationURLs':[]}
 
     for f in images:
+        print('looking at '+f)
         annotation_file = os.path.basename(f).replace('.jpg',mask_suffix)
         annotation_file = os.path.join(annotations_dir,annotation_file)
+        if ignore_finished:
+            maskname = annotation_file.replace(mask_suffix,finished_mask_suffix)
+            #print('finished maskname:'+maskname)
+            if os.path.isfile(maskname):
+                print('mask '+maskname+' exists, skipping')
+                continue
         if not os.path.isfile(annotation_file):
-            logging.info('could not find '+str(annotation_file))
+            print('could not find '+str(annotation_file))
             continue
         the_dict['imageURLs'].append(f)
         the_dict['annotationURLs'].append(annotation_file)
+        print('added image '+f+' mask '+annotation_file)
     with open(outfile,'w') as fp:
         json.dump(the_dict,fp,indent=4)
+
 
 
 def convert_pdoutput_to_webtool(dir,suffix_to_convert='.bmp',suffix_to_convert_to='.png'):
