@@ -12,7 +12,7 @@ from trendi import constants
 
 
 def gen_json(images_dir='data/pd_output',annotations_dir='data/pd_output',
-             outfile = 'data/pd_output.json',labels=constants.pixlevel_categories_v4_for_web,mask_suffix='_pixv4_webtool',
+             outfile = 'data/pd_output.json',labels=constants.pixlevel_categories_v4_for_web,mask_suffix='_pixv4_webtool.png',
              ignore_finished=True,finished_mask_suffix='_pixv4_webtool_finished_mask'):
 
     images = [os.path.join(images_dir,f) for f in os.listdir(images_dir) if '.jpg' in f and not 'legend' in f]
@@ -23,7 +23,7 @@ def gen_json(images_dir='data/pd_output',annotations_dir='data/pd_output',
         annotation_file = os.path.basename(f).replace('.jpg',mask_suffix)
         annotation_file = os.path.join(annotations_dir,annotation_file)
         if ignore_finished:
-            maskname = annotation_file.replace(mask_suffix,finished_mask_suffix)
+            maskname = annotation_file.replace(mask_suffix,finished_mask_suffix)+'.png'  #since the username is added e.g. swimwear_men_125_pixv4_webtool_finished_mask_unknown.png
             #print('finished maskname:'+maskname)
             if os.path.isfile(maskname):
                 print('mask '+maskname+' exists, skipping')
