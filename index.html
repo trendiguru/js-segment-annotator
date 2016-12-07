@@ -10,7 +10,7 @@
 <select id="nameSelect" name="name_title">
     <option value="" disabled="disabled" selected="selected">Please select a name</option>
     <option value="Makeda"
-              <? if(@$_POST['name_title'] == 'Mr') { echo 'selected = \"selected\"'; } ?>>Makeda</option>
+              <? if(@$_POST['name_title'] == 'Mr') { echo 'selected = \"selected\"'; } ?>> Makeda </option>
 
     <option value="Jeremy"
                <?php if($name_title == 'Jeremy'): ?> selected="selected" <?php endif ?>
@@ -30,7 +30,6 @@
 
 </select>
 
-<option value="Mr" <? if(@$_POST['name_title'] == 'Mr') { echo 'selected = \"selected\"'; } ?>>Mr</option>
 
 </p>
 
