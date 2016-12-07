@@ -48,6 +48,7 @@ function(Layer, Annotator, util) {
       nextAnchor.href = util.makeQueryParams(params, {
         id: id + 1
       });
+      console.log(nextAnchor.href)
     }
     else
       nextAnchor = nextAnchorText;
