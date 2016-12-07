@@ -9,9 +9,9 @@
 <p><a href="categories.html">key for category definitions</a>
 <select id="nameSelect" name="name_title">
     <option value="" disabled="disabled" selected="selected">Please select a name</option>
-    <option value="Makeda">
-               <?php if($name_title == 'Makeda'): ?> selected="selected" <?php endif ?>
-    Makeda</option>
+    <option value="Makeda"
+              <? if(@$_POST['name_title'] == 'Mr') { echo 'selected = \"selected\"'; } ?>>Makeda</option>
+
     <option value="Jeremy"
                <?php if($name_title == 'Jeremy'): ?> selected="selected" <?php endif ?>
     >Jeremy</option>
@@ -30,7 +30,7 @@
 
 </select>
 
-
+<option value="Mr" <? if(@$_POST['name_title'] == 'Mr') { echo 'selected = \"selected\"'; } ?>>Mr</option>
 
 </p>
 
